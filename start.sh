@@ -10,4 +10,9 @@ if ! system_profiler SPUSBDataType 2>/dev/null | grep -qi "RP2 Boot"; then
     echo "No Pico found. Plug it in and run this again."
     exit 1
 fi
+if [ -d /Volumes/RPI-RP2 ]; then
+    echo "unmounting RPI-RP2 so macOS releases the device ..."
+    diskutil unmount /Volumes/RPI-RP2 >/dev/null 2>&1
+    sleep 1
+fi
 python3 boot2_jump.py "$@"

@@ -9,7 +9,7 @@
 #   .word boot2_entry | 1
 import glob, struct, time
 from firmware import find_uf2
-from picoboot import Picoboot, EXCLUSIVE
+from picoboot import Picoboot, EXCLUSIVE_AND_EJECT
 
 BOOT2_RAM = 0x20041F00
 STUB_RAM  = 0x20041E00
@@ -22,9 +22,9 @@ boot2 = raw[32:32 + 256]
 
 pb = Picoboot()
 pb.reset_interface()
-pb.exclusive_access(EXCLUSIVE)
+pb.exclusive_access(EXCLUSIVE_AND_EJECT)   # stop macOS driving the MSC interface
 pb.exit_xip()                       # boot2 expects flash in command mode
-print("exclusive access + exit_xip")
+print("exclusive access (ejected) + exit_xip")
 
 pb.write(BOOT2_RAM, boot2)
 pb.write(STUB_RAM, stub)
