@@ -33,7 +33,7 @@ Pins 1, 2 and 3 are the three pads nearest the USB connector, so only the power 
 
 > **Read the silkscreen.** The 4-pin header ships in several orders — `GND VCC SCL SDA` and `VCC GND SDA SCL` are both common. Match by printed label, never by position.
 
-A full illustrated version with a schematic is in [`docs/wiring.html`](docs/wiring.html) — open it in a browser.
+**[→ Read the illustrated wiring guide](https://galaviz1.github.io/pico-ssd1306-guide/)** — schematic, step-by-step, and the I²C bus diagram. Source: [`docs/wiring.html`](docs/wiring.html).
 
 ---
 
