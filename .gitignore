@@ -1,0 +1,15 @@
+# MicroPython firmware - download from micropython.org, don't commit binaries
+*.uf2
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# scratch
+*.png
+shot.png
