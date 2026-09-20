@@ -110,12 +110,70 @@ The bootrom samples that line at every reset. Stuck pressed means it never boots
 
 ---
 
+## Board report
+
+`board_info.py` reports what a board actually is, measured rather than assumed — useful when you are not sure which RP2040 variant you have, how much flash is left, or whether BOOTSEL is stuck.
+
+```bash
+python3 -m mpremote connect auto run board_info.py
+```
+
+From the unit this repo was developed against:
+
+```
+[identity]
+  board       : Raspberry Pi Pico with RP2040
+  unique id   : E660C0D1C7385A21
+  build       : RPI_PICO
+  micropython : 1.29.0
+
+[clock]
+  system      : 125000000 Hz (125 MHz)
+
+[ram]
+  heap free   : 221.3 KB
+  heap used   : 6.9 KB
+  heap total  : 228.3 KB
+
+[flash]
+  total       : 2048.0 KB
+  firmware    : 640.0 KB region
+  filesystem  : 1408.0 KB total, 1392.0 KB free, 16.0 KB used
+
+[temperature]
+  on-die      : 19.1 C
+
+[bootsel]
+  button      : PRESSED
+  WARNING: reads pressed with nobody touching it.
+```
+
+That last line is finding 3 showing up in one command. `rp2.bootsel_button()` returning `1` while nobody is touching the board means the bootrom will enter the bootloader at every reset.
+
+### RP2040 reference
+
+| | |
+| --- | --- |
+| CPU | Dual-core Arm Cortex-M0+, up to 133 MHz |
+| SRAM | 264 KB on-chip |
+| Flash | 2 MB QSPI, external |
+| GPIO | 26 exposed (`GP0`–`GP22`, `GP26`–`GP28`) |
+| ADC | 4 × 12-bit inputs, plus an internal temperature sensor on channel 4 |
+| Interfaces | 2 × UART, 2 × SPI, 2 × I²C, 16 × PWM |
+| PIO | 2 blocks, 4 state machines each |
+| Power | 1.8–5.5 V in; `3V3(OUT)` on pin 36 sources roughly 300 mA |
+
+The heap reads ~228 KB against 264 KB of physical SRAM — the difference is MicroPython's static allocations and stack, not missing memory.
+
+---
+
 ## Layout
 
 ```
 oled_demo.py          blinking text (runs on the Pico)
 oled_test.py          five-stage display self-test
 scan.py               I²C scan across five common pin pairs
+board_info.py         measured board report: clock, RAM, flash, temp, BOOTSEL
 ssd1306.py            display driver (micropython-lib, MIT)
 
 diagnostics/
