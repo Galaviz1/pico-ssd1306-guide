@@ -177,6 +177,39 @@
     padding:5px 9px;
   }
 
+
+  .watch{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-top:22px;
+    padding:9px 14px 9px 12px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--surface);
+    color:var(--ink);
+    text-decoration:none;
+    font-size:14px;
+    transition:border-color .15s ease;
+  }
+  .watch:hover{border-color:var(--accent);}
+  .watch .play{
+    flex:none;
+    width:22px;height:22px;
+    border-radius:3px;
+    background:var(--w-vcc);
+    display:inline-grid;
+    place-items:center;
+  }
+  .watch .play svg{display:block;width:9px;height:9px;min-width:0;}
+  .watch .label{font-weight:600;}
+  .watch .host{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;
+    color:var(--ink-3);
+  }
+  @media (max-width:420px){ .watch{flex-wrap:wrap;} }
+
   figure{margin:0;}
   .figbox{
     background:var(--surface);
@@ -371,6 +404,14 @@
     <li>I²C @ 0x3C</li>
     <li>MicroPython 1.29</li>
   </ul>
+
+  <a class="watch" href="https://www.youtube.com/shorts/pYQEHXCuiMY" target="_blank" rel="noopener noreferrer">
+    <span class="play" aria-hidden="true">
+      <svg viewBox="0 0 10 10" role="presentation"><polygon points="2,0.8 9,5 2,9.2" fill="#fff"/></svg>
+    </span>
+    <span class="label">Watch it running</span>
+    <span class="host">youtube.com/shorts</span>
+  </a>
 
   <h2>The connections</h2>
 

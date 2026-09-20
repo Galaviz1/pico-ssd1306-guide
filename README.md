@@ -6,6 +6,18 @@ This started as "check if the OLED works" and turned up three separate problems 
 
 ---
 
+## Demo
+
+The blinking text running on the hardware described here:
+
+<a href="https://www.youtube.com/shorts/pYQEHXCuiMY">
+  <img src="https://img.youtube.com/vi/pYQEHXCuiMY/hqdefault.jpg" alt="SSD1306 OLED blinking text on a Raspberry Pi Pico" width="260">
+</a>
+
+[youtube.com/shorts/pYQEHXCuiMY](https://www.youtube.com/shorts/pYQEHXCuiMY)
+
+---
+
 ## Wiring
 
 | OLED pin | Pico physical pin | Pico label | Carries |
